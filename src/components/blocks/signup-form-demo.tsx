@@ -8,25 +8,31 @@ import { toast } from "sonner";
 
 
 export default function SendMessageForm() {
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const [isLoading, setIsLoading] = React.useState(false);
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setIsLoading(true);
     const formData = new FormData(e.target as HTMLFormElement);
     const name = formData.get("name") as string;
     const email = formData.get("email") as string;
     const message = formData.get("message") as string;
     console.log(name, email, message);
-    fetch("/api/send-email", {
-      method: "POST",
-      body: JSON.stringify({ name, email, message }),
-    }).then(() => {
+    try {
+      await fetch("/api/send-email", {
+        method: "POST",
+        body: JSON.stringify({ name, email, message }),
+      });
       toast.success("Success!", {
         description: "Your action was completed successfully",
-      })
-    }).catch(() => {
+      });
+    } catch {
       toast.error("Error!", {
         description: "Your action was not completed successfully",
-      })
-    });
+      });
+    } finally {
+      setIsLoading(false);
+    }
   };
   return (
     <div className="shadow-input mx-auto w-full max-w-md rounded-none bg-white p-4 md:rounded-2xl md:p-8 dark:bg-black">
@@ -45,11 +51,21 @@ export default function SendMessageForm() {
         </LabelInputContainer>
 
         <button
-          className="group/btn relative block h-10 w-full rounded-md bg-gradient-to-br from-black to-neutral-600 font-medium text-white shadow-[0px_1px_0px_0px_#ffffff40_inset,0px_-1px_0px_0px_#ffffff40_inset] dark:bg-zinc-800 dark:from-zinc-900 dark:to-zinc-900 dark:shadow-[0px_1px_0px_0px_#27272a_inset,0px_-1px_0px_0px_#27272a_inset]"
+          className="group/btn relative block h-10 w-full rounded-md bg-gradient-to-br from-black to-neutral-600 font-medium text-white shadow-[0px_1px_0px_0px_#ffffff40_inset,0px_-1px_0px_0px_#ffffff40_inset] dark:bg-zinc-800 dark:from-zinc-900 dark:to-zinc-900 dark:shadow-[0px_1px_0px_0px_#27272a_inset,0px_-1px_0px_0px_#27272a_inset] disabled:opacity-50 disabled:cursor-not-allowed"
           type="submit"
+          disabled={isLoading}
         >
-          Send message &rarr;
-          <BottomGradient />
+          {isLoading ? (
+            <div className="flex items-center justify-center gap-2">
+              <div className="h-4 w-4 animate-spin rounded-full border-2 border-white border-t-transparent" />
+              <span>Sending...</span>
+            </div>
+          ) : (
+            <>
+              Send message &rarr;
+              <BottomGradient />
+            </>
+          )}
         </button>
       </form>
     </div>
