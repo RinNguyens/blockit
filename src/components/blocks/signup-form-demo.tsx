@@ -4,11 +4,12 @@ import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
 import { Textarea } from "../ui/textarea";
+import { toast } from "sonner";
+
 
 export default function SendMessageForm() {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log("Form submitted");
     const formData = new FormData(e.target as HTMLFormElement);
     const name = formData.get("name") as string;
     const email = formData.get("email") as string;
@@ -17,26 +18,30 @@ export default function SendMessageForm() {
     fetch("/api/send-email", {
       method: "POST",
       body: JSON.stringify({ name, email, message }),
-    }).then((res) => {
-      console.log(res);
-    }).catch((err) => {
-      console.log(err);
+    }).then(() => {
+      toast.success("Success!", {
+        description: "Your action was completed successfully",
+      })
+    }).catch(() => {
+      toast.error("Error!", {
+        description: "Your action was not completed successfully",
+      })
     });
   };
   return (
     <div className="shadow-input mx-auto w-full max-w-md rounded-none bg-white p-4 md:rounded-2xl md:p-8 dark:bg-black">
       <form className="my-8" onSubmit={handleSubmit}>
-          <LabelInputContainer className="mb-4">
-            <Label htmlFor="name">Your name</Label>
-            <Input id="name" placeholder="Tyler" type="text" />
-          </LabelInputContainer>
-          <LabelInputContainer className="mb-4">
-            <Label htmlFor="email">Your email</Label>
-            <Input id="email" placeholder="Durden" type="text" />
-          </LabelInputContainer>
+        <LabelInputContainer className="mb-4">
+          <Label htmlFor="name">Your name</Label>
+          <Input id="name" name="name" placeholder="Rin Nguyen" type="text" />
+        </LabelInputContainer>
+        <LabelInputContainer className="mb-4">
+          <Label htmlFor="email">Your email</Label>
+          <Input id="email" name="email" placeholder="email.py@gmail.com" type="text" />
+        </LabelInputContainer>
         <LabelInputContainer className="mb-4">
           <Label htmlFor="message">Message</Label>
-          <Textarea id="message" placeholder="projectmayhem@fc.com" rows={10} />
+          <Textarea id="message" name="message" placeholder="I want to work with you" rows={10} />
         </LabelInputContainer>
 
         <button

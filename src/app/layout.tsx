@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { Analytics } from '@vercel/analytics/next';
+import { Toaster } from "@/components/ui/sonner"
 
 export const metadata: Metadata = {
   title: "Blockit",
@@ -19,6 +20,7 @@ export default function RootLayout({
       >
         {children}
         <Analytics />
+        <Toaster />
       </body>
     </html>
   );
