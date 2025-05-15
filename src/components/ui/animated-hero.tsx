@@ -66,11 +66,11 @@ function Hero() {
               We craft digital experiences that inspire, engage, and deliver exceptional results for forward-thinking brands.
             </p>
           </div>
-          <div className="flex flex-row gap-3">
+          {/* <div className="flex flex-row gap-3">
             <Button size="lg" className="gap-4">
               Sign up here <MoveRight className="w-4 h-4" />
             </Button>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>
