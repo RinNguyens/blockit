@@ -9,6 +9,19 @@ export default function SendMessageForm() {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log("Form submitted");
+    const formData = new FormData(e.target as HTMLFormElement);
+    const name = formData.get("name") as string;
+    const email = formData.get("email") as string;
+    const message = formData.get("message") as string;
+    console.log(name, email, message);
+    fetch("/api/send-email", {
+      method: "POST",
+      body: JSON.stringify({ name, email, message }),
+    }).then((res) => {
+      console.log(res);
+    }).catch((err) => {
+      console.log(err);
+    });
   };
   return (
     <div className="shadow-input mx-auto w-full max-w-md rounded-none bg-white p-4 md:rounded-2xl md:p-8 dark:bg-black">
@@ -22,8 +35,8 @@ export default function SendMessageForm() {
             <Input id="email" placeholder="Durden" type="text" />
           </LabelInputContainer>
         <LabelInputContainer className="mb-4">
-          <Label htmlFor="content">Content</Label>
-          <Textarea id="content" placeholder="projectmayhem@fc.com" rows={10} />
+          <Label htmlFor="message">Message</Label>
+          <Textarea id="message" placeholder="projectmayhem@fc.com" rows={10} />
         </LabelInputContainer>
 
         <button
