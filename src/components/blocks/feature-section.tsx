@@ -179,9 +179,6 @@ export const SkeletonTwo = () => {
           <motion.div
             variants={imageVariants}
             key={"images-first" + idx}
-            style={{
-              rotate: Math.random() * 20 - 10,
-            }}
             whileHover="whileHover"
             whileTap="whileTap"
             className="rounded-xl -mr-4 mt-4 p-1 bg-white dark:bg-neutral-800 dark:border-neutral-700 border border-neutral-100 shrink-0 overflow-hidden"
@@ -200,9 +197,6 @@ export const SkeletonTwo = () => {
         {images.map((image, idx) => (
           <motion.div
             key={"images-second" + idx}
-            style={{
-              rotate: Math.random() * 20 - 10,
-            }}
             variants={imageVariants}
             whileHover="whileHover"
             whileTap="whileTap"

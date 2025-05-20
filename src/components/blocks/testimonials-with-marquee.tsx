@@ -1,3 +1,4 @@
+"use client";
 import { cn } from "@/lib/utils"
 import { TestimonialCard, TestimonialAuthor } from "@/components/ui/testimonial-card"
 import { SparklesText } from "../ui/sparkles-text"

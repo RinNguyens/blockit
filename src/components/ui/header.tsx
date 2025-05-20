@@ -12,8 +12,10 @@ import {
 import { Menu, MoveRight, X } from "lucide-react";
 import { useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 function Header() {
+    const router = useRouter();
     const navigationItems = [
         {
             title: "Home",
@@ -125,7 +127,7 @@ function Header() {
                 </div>
                 <div className="flex justify-end w-full gap-4">
                     <div className="border-r hidden md:inline"></div>
-                    <Button variant="outline">Sign in</Button>
+                    <Button variant="outline" onClick={() => router.push("/signin")}>Sign in</Button>
                 </div>
                 <div className="flex w-12 shrink lg:hidden items-end justify-end">
                     <Button variant="ghost" onClick={() => setOpen(!isOpen)}>

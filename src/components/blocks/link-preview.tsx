@@ -5,7 +5,7 @@ import { LinkPreview } from "@/components/ui/link-preview";
 export function LinkPreviewSection() {
   return (
     <div className="flex justify-center items-center h-[40rem] flex-col px-4">
-      <p className="text-neutral-500 dark:text-neutral-400 text-xl md:text-3xl max-w-3xl mx-auto mb-10">
+      <div className="text-neutral-500 dark:text-neutral-400 text-xl md:text-3xl max-w-3xl mx-auto mb-10">
         <LinkPreview url="https://vietmind.chat" className="font-bold">
           Vietmind
         </LinkPreview>{" "}
@@ -14,8 +14,8 @@ export function LinkPreviewSection() {
           CryptoMind
         </LinkPreview>{" "}
         is a great way to build and track realtime data.
-      </p>
-      <p className="text-neutral-500 dark:text-neutral-400 text-xl md:text-3xl max-w-3xl mx-auto">
+      </div>
+      <div className="text-neutral-500 dark:text-neutral-400 text-xl md:text-3xl max-w-3xl mx-auto">
         Visit{" "}
         <LinkPreview
           url="https://vietmind.chat"
@@ -24,7 +24,7 @@ export function LinkPreviewSection() {
           Vietmind
         </LinkPreview>{" "}
         Accessible, personalized psychotherapy to nourish your mind.
-      </p>
+      </div>
     </div>
   );
 }

@@ -6,6 +6,10 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
+        hostname: 'cdn1.iconfinder.com',
+      },
+      {
+        protocol: 'https',
         hostname: 'api.microlink.io',
       },
     ],
