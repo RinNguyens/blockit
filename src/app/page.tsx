@@ -6,7 +6,10 @@ import { FeaturesSectionHover } from "@/components/blocks/feature-section-hover"
 import { AnimatedTestimonialsPeople } from "@/components/blocks/AnimatedTestimonials";
 import SendMessage from "@/components/blocks/send-message";
 import { TestimonialsSectionMarquee } from "@/components/marquee";
-export default function Home() {
+import { auth } from "@/lib/auth";
+export default async function Home() {
+  const session = await auth();
+  console.log("🚀 ~ Home ~ session:", session)
   return (
     <div className="grid  min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
       <Header />

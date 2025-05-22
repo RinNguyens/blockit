@@ -19,8 +19,7 @@ import {
 } from 'motion/react';
 import { Eye, EyeOff } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import { signIn } from '@/lib/auth';
-
+import Link from 'next/link';
 const Input = memo(
   forwardRef(function Input(
     { className, type, ...props }: React.InputHTMLAttributes<HTMLInputElement>,
@@ -419,9 +418,6 @@ const AnimatedForm = memo(function AnimatedForm({
             <button
               className='g-button group/btn bg-transparent w-full rounded-md border h-10 font-medium outline-hidden hover:cursor-pointer'
               type='button'
-              onClick={async () => {
-                await signIn('google')
-              }}
             >
               <span className='flex items-center justify-center w-full h-full gap-3'>
                 <Image
@@ -430,7 +426,7 @@ const AnimatedForm = memo(function AnimatedForm({
                   src='https://cdn1.iconfinder.com/data/icons/google-s-logo/150/Google_Icons-09-512.png'
                   alt='Google Icon'
                 />
-                {googleLogin}
+                <Link href={`/api/auth/signin`}>{googleLogin}</Link>
               </span>
 
               <BottomGradient />

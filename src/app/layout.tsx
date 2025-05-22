@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { Analytics } from '@vercel/analytics/next';
 import { Toaster } from "@/components/ui/sonner"
+import { SessionProvider } from "next-auth/react";
 
 export const metadata: Metadata = {
   title: "Blockit",
@@ -18,7 +19,9 @@ export default function RootLayout({
       <body
         className={`antialiased`}
       >
-        {children}
+        <SessionProvider>
+          {children}
+        </SessionProvider>
         <Analytics />
         <Toaster />
       </body>
