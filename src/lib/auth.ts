@@ -8,6 +8,9 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     strategy: "jwt",
   },
   ...authConfig,
+  pages: {
+    signIn: "/signin",
+  },
   callbacks: {
     async signIn({ account, profile }) {
       if (account?.provider === "google") {

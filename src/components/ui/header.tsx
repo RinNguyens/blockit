@@ -13,7 +13,8 @@ import { Menu, MoveRight, X } from "lucide-react";
 import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { signOut, useSession } from "next-auth/react";
+import { useSession } from "next-auth/react";
+import DropdownAvatar from "../blocks/dropdown-avatar";
 function Header() {
     const { data: session } = useSession();
     const router = useRouter();
@@ -129,7 +130,7 @@ function Header() {
                 <div className="flex justify-end w-full gap-4">
                     <div className="border-r hidden md:inline"></div>
                     {session?.user ? (
-                        <Button variant="outline" onClick={() => signOut()}>Sign out</Button>
+                        <DropdownAvatar />
                     ) : (
                         <Button variant="outline" onClick={() => router.push("/signin")}>Sign in</Button>
                     )}
